@@ -110,46 +110,117 @@ The engine returns a comprehensive JSON report including:
 
 ```json
 {
-  "authenticity": "authentic|likely-forged|highly-suspicious|template|uncertain",
-  "confidence": 85,
-  "rationale": "Detailed explanation based on evidence",
-  "keySignals": [
-    "No reverse image matches found",
-    "ID number verifiable on official portal"
-  ],
-  "recommendations": [
-    "Verify number at https://uidai.gov.in",
-    "Scan QR code with official app"
-  ],
+  "generatedAt": "2025-09-25T14:57:24.361Z",
+  "input": {
+    "imageUrl": "https://xverticebucket.s3.us-east-1.amazonaws.com/uploads/1744263262901-20.png"
+  },
   "ocr": {
-    "text": "Extracted OCR text",
-    "confidence": 0.95
+    "textPreview": "# We the People \n\nOf the United States, in Order to form a more perfect Union…\nP <USAJENNINGS<<EVELYN<<<<<<<<<<<<<<<<<4342867238 USA6690715F9948816678<198199",
+    "error": null
   },
   "vision": {
-    "description": "AI-generated image description"
+    "description": "The image is a scan of a United States passport page. … The photo is from this-person-does-not-exist.com, indicating it’s AI-generated.",
+    "error": null
   },
-  "imageHits": [
-    {
-      "title": "Similar image title",
-      "url": "https://example.com/image",
-      "snippet": "Description snippet"
-    }
+  "matches": {
+    "imageHits": [
+      {
+        "title": "Labuda hi-res stock photography and images - Alamy",
+        "url": "https://c8.alamy.com/comp/PM5GMF/film-still.jpg",
+        "sourceUrl": "https://www.alamy.com/stock-photo/labuda.html",
+        "domain": "alamy.com",
+        "position": 1,
+        "snippet": "",
+        "tags": []
+      }
+    ],
+    "textHits": [
+      {
+        "query": "\"4342867238\"",
+        "title": "Bosch Siemens 11021999 heating element",
+        "url": "https://fixpart.co.uk/product/bosch-siemens-4342867238-heating-element",
+        "snippet": "Part Number: 4342867238 …",
+        "domain": "fixpart.co.uk",
+        "position": 1
+      },
+      {
+        "query": "\"4342867238\" passport",
+        "title": "1000000-most-common-passwords.txt",
+        "url": "https://lucidar.me/en/security/files/1000000-most-common-passwords.txt",
+        "snippet": "... passport password list includes 4342867238 …",
+        "domain": "lucidar.me",
+        "position": 1
+      }
+    ]
+  },
+  "stats": {
+    "imageHitCount": 1,
+    "textHitCount": 2
+  },
+  "keyFindings": [
+    "1 visually similar image detected (stock-photo site)",
+    "No official or government references found for this passport number",
+    "Passport photo is clearly AI-generated (this-person-does-not-exist.com)"
   ],
-  "textHits": [
-    {
-      "title": "Web page title",
-      "url": "https://example.com/page",
-      "snippet": "Relevant text snippet"
-    }
-  ],
+  "searchPlan": {
+    "imageUrl": "https://xverticebucket.s3.us-east-1.amazonaws.com/uploads/1744263262901-20.png",
+    "ocrText": "# We the People … P <USAJENNINGS<<EVELYN…",
+    "visionDescription": "The image is a scan of a United States passport page…",
+    "documentType": "passport",
+    "entities": {
+      "ids": ["4342867238","6690715","9948816678","198199","434286723"],
+      "names": ["United States","Passport Information","Given Names","Issuing Authority"],
+      "years": ["1972","1988","1998"],
+      "genders": ["Female"],
+      "baseTerms": ["passport","united","america","birth"],
+      "documentType": "passport",
+      "id": "4342867238",
+      "name": "United States",
+      "year": "1972",
+      "gender": "Female"
+    },
+    "primaryQuery": "\"4342867238\" \"passport\"",
+    "textQueries": [
+      "\"4342867238\"",
+      "\"4342867238\" \"passport\"",
+      "\"4342867238\" passport verification",
+      "\"4342867238\" data leak",
+      "\"4342867238\" fraud",
+      "\"4342867238\" passport template",
+      "\"United States\" \"passport\"",
+      "passport generator"
+    ]
+  },
   "timings": [
-    {
-      "label": "fetchImage",
-      "durationMs": 1500,
-      "status": "ok"
-    }
-  ]
+    { "label": "fetchImage", "durationMs": 4882, "status": "ok" },
+    { "label": "mistralOCR", "durationMs": 2190, "status": "ok" },
+    { "label": "geminiVision", "durationMs": 8360, "status": "ok" },
+    { "label": "serperReverseImage", "durationMs": 1861, "status": "ok" },
+    { "label": "serperTextSearch", "durationMs": 2097, "status": "ok" }
+  ],
+  "verification": {
+    "documentType": "passport",
+    "authenticity": "highly-suspicious",
+    "confidence": 5,
+    "riskLevel": "critical",
+    "rationale": "Passport photo is AI-generated; no official matches; security features missing.",
+    "keySignals": [
+      "AI-generated photo",
+      "No government references",
+      "Generic part-number matches"
+    ],
+    "recommendations": [
+      "Reject document as invalid",
+      "Request physical inspection",
+      "Verify via official State Department portal"
+    ],
+    "verificationResources": [
+      "https://travel.state.gov",
+      "https://www.interpol.int/Sltd"
+    ]
+  }
 }
+
 ```
 
 ## 🔍 How It Works
