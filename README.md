@@ -1,6 +1,6 @@
 # DocShield Reverse Image Search Engine
 
-A sophisticated Node.js-based reverse image search and document forgery detection system designed specifically for analyzing Aadhaar cards (India's national biometric ID). This engine combines multiple AI services to perform comprehensive document authenticity verification through visual analysis, OCR extraction, entity recognition, and web-based corroboration.
+A sophisticated Node.js-based reverse image search and document forgery detection system designed specifically for analyzing Identity Images. This engine combines multiple AI services to perform comprehensive document authenticity verification through visual analysis, OCR extraction, entity recognition, and web-based corroboration.
 
 ## 🚀 Features
 
